@@ -1,19 +1,52 @@
 library(shiny)
+library(shinydashboard)
+library(shinydashboardPlus)
 
 shinyUI(
-    fluidPage(
-        titlePanel("Euler's e in arbitrary precision", "Euler's e"),
-        tags$br(),
+    dashboardPagePlus(
+        title = "CFgO | Dashboard", 
         
-        fluidRow(
-            column(2, sliderInput("precision", "Number of Precision Bits", min = 2, max = 256, 
-                    value = 10))
-        ),
-        fluidRow(
-            column(12, tags$h1(textOutput("result")))
-            
-        ),
-        tags$br(),
-        tags$p("We would like to acknowledge Leonhard Euler for his number and Martin Maechler for his Rmpfr package.")
+        enable_preloader = T,
+        loading_duration = 1,
+        
+        ##### Header #####
+        header = dashboardHeaderPlus(
+            fixed = T,
+            # Title
+            title = "CFgO"
+        ), #Closing Header
+        
+        ##### Dashboard Sidebar #####
+        sidebar = dashboardSidebar(
+            sidebarMenu(
+                id = 'Tabs', 
+                class = "sidebar-menu scroll-box", 
+                menuItem("Dashboard", tabName = "tab_frontpage", icon = icon("dashboard")),
+                menuItem(
+                    "Profil", tabName = "tab_profile", icon = icon("user"),
+                    badgeLabel = "online", badgeColor = "green"
+                )
+            )
+        ), #Closing DashboardSidebar
+        
+        ##### Dashboard Body #####
+        body = dashboardBody(
+            tabItems(
+                ### Tab 1:
+                tabItem(
+                    tabName = "tab_frontpage",
+                    h1("CFgOgOgO")
+                ),
+                
+                ### Tab 2:
+                tabItem(
+                    tabName = "tab_profile",
+                    h1("Profil")
+                )
+                
+            )#tabItems
+        )#dashboardbody
+        
+        
     )
 )
