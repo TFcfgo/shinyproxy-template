@@ -35,7 +35,8 @@ shinyUI(
                 ### Tab 1:
                 tabItem(
                     tabName = "tab_frontpage",
-                    h1("CFgOgOgO")
+                    h1("CFgOgOgO"),
+                    verbatimTextOutput("Environment")
                 ),
                 
                 ### Tab 2:
