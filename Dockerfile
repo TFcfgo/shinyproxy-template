@@ -20,7 +20,7 @@ RUN mkdir /root/euler
 COPY euler /root/euler
 
 COPY Rprofile.site /usr/lib/R/etc/
-COPY .Renviron /usr/lib/R/etc/
+COPY Renviron.site /usr/lib/R/etc/
 
 EXPOSE 3838
 
