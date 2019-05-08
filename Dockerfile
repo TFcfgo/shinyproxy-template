@@ -1,9 +1,19 @@
-FROM rocker/tidyverse:3.5.3
+FROM openanalytics/r-base
 
-RUN R -e 'install.packages("remotes")'
-RUN R -e 'remotes::install_cran("shiny")'
-RUN R -e 'remotes::install_cran("shinydashboard")'
-RUN R -e 'remotes::install_cran("shinydashboardPlus")'
+# system libraries of general use
+RUN apt-get update && apt-get install -y \
+    sudo \
+    pandoc \
+    pandoc-citeproc \
+    libcurl4-gnutls-dev \
+    libcairo2-dev \
+    libxt-dev \
+    libssl-dev \
+    libssh2-1-dev \
+    libssl1.0.0
+
+# basic shiny functionality
+RUN R -e "install.packages(c('shiny', 'shinydashboard', 'shinydashboardPlus'), repos='https://cloud.r-project.org/')"
 
 # copy the app to the image
 RUN mkdir /root/euler
